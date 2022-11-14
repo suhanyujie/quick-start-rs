@@ -219,3 +219,4 @@ cargo generate suhanyujie/quick-start-rs
 ## ref
 * 关于基于模板创建新项目可以参考 https://rust-github.github.io/
 * [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
+* https://github.com/cargo-generate/cargo-generate
