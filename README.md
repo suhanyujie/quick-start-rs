@@ -200,3 +200,6 @@ fn get_files_by_dir(dir: String) -> Result<Vec<String>> {
 主要原因是 Rust 中存在一种[“孤儿规则”（orphan rule）](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html?highlight=orphan%20rule#using-the-newtype-pattern-to-implement-external-traits-on-external-types)导致，因为它，我们不能为非本地类型实现非本地的 trait，在这里，DirEntry 是标准库中的类型，TryFrom 也是标准库中的 trait，因此我们需要将 DirEntry 包装成一种新的本地类型 —— 即用 `W<pub T>` 对其进行包装，从而实现 TryFrom trait。
 
 好了到这里，我们的项目脚手架也基本完成，我们向其中添加了一些基本的错误定义，工具库，以及预引入功能，可以让你在写从 0 到 1 的项目时，更快地聚焦于项目本身的逻辑，提高效率。如果你觉得有更好的方式方法，欢迎在 [issues 中](https://github.com/suhanyujie/article-transfer-rs/issues)提问题交流 : )。
+
+## ref
+* 关于基于模板创建新项目可以参考 https://rust-github.github.io/
