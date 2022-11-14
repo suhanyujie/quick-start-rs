@@ -54,7 +54,7 @@ fn main() {
 └── target
 ```
 
-此时就能直接在 ./src/utils/mode.rs 文件中编写工具函数。如果还需细分，可以在 src/utils 目录下继续创建文件或目录，用于更详细的模块划分。
+此时就能直接在 `./src/utils/mod.rs` 文件中编写工具函数。如果还需细分，可以在 `src/utils` 目录下继续创建文件或目录，用于更详细的模块划分。
 
 ### 错误处理
 用 Rust 编写工具或项目时，错误处理是不可缺少的东西，随着项目的增加，引入其他第三方 crate，或有各种各样的错误类型，为了在你的项目中统一这些错误，我们可以用到 [thiserror](https://crates.io/crates/thiserror)。所以我们可以将其加入的项目模版中：
@@ -198,4 +198,4 @@ fn get_files_by_dir(dir: String) -> Result<Vec<String>> {
 
 主要原因是 Rust 中存在一种[“孤儿规则”（orphan rule）](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html?highlight=orphan%20rule#using-the-newtype-pattern-to-implement-external-traits-on-external-types)导致，因为它，我们不能对本地类型实现非本地的 trait，在这里，DirEntry 是标准库中的类型，TryFrom 也是标准库中的 trait，因此我们需要将 DirEntry 包装成一种新的本地类型，从而实现 TryFrom trait。
 
-好了到这里，我们的项目脚手架也基本完成，我们向其中添加了一些基本的错误定义，工具库，以及预引入功能，可以让你在写从 0 到 1 的项目时，更快地聚焦于项目本身的逻辑，提高效率。如果你觉得有更好的方式方法，欢迎在 [issues 中](https://github.com/suhanyujie/rust-cookbook-note/issues)提问题交流 : )。
+好了到这里，我们的项目脚手架也基本完成，我们向其中添加了一些基本的错误定义，工具库，以及预引入功能，可以让你在写从 0 到 1 的项目时，更快地聚焦于项目本身的逻辑，提高效率。如果你觉得有更好的方式方法，欢迎在 [issues 中](https://github.com/suhanyujie/article-transfer-rs/issues)提问题交流 : )。
