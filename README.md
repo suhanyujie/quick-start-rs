@@ -1,8 +1,9 @@
 # quick-start-rs 
 quick-start-rs（quick start a rust project）是用于快速创建一个 rust 项目的脚手架/模版。
 
-## ref
-* 深度参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
+>* 深度参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
+>* 文章来自 [suhanyujie](https://github.com/suhanyujie/quick-start-rs)
+>* Tags: Rust, utils, quick start, project template
 
 ## 正文
 当你心血来潮，想用 Rust 写一个小工具时，也许你可以直接使用 `cargo new pro1001` 之类的命令进行快速创建，但这样你需要做一些前置准备工作，比如：创建 utils crate、错误处理等等。现在也许你可以有更好的方式 —— quick-start-rs，当然，本文只是抛砖引玉，提供一个思路，你完全可以根据自己的需要定制自己的“quick-start-rs”。此外，本文也是参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0) 撰写的。
@@ -196,6 +197,6 @@ fn get_files_by_dir(dir: String) -> Result<Vec<String>> {
 
 此时可能会有同学问，为啥不直接为 DirEntry 实现 TryFrom trait，而非要用 W 类型包装一下？
 
-主要原因是 Rust 中存在一种[“孤儿规则”（orphan rule）](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html?highlight=orphan%20rule#using-the-newtype-pattern-to-implement-external-traits-on-external-types)导致，因为它，我们不能对本地类型实现非本地的 trait，在这里，DirEntry 是标准库中的类型，TryFrom 也是标准库中的 trait，因此我们需要将 DirEntry 包装成一种新的本地类型，从而实现 TryFrom trait。
+主要原因是 Rust 中存在一种[“孤儿规则”（orphan rule）](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html?highlight=orphan%20rule#using-the-newtype-pattern-to-implement-external-traits-on-external-types)导致，因为它，我们不能为非本地类型实现非本地的 trait，在这里，DirEntry 是标准库中的类型，TryFrom 也是标准库中的 trait，因此我们需要将 DirEntry 包装成一种新的本地类型 —— 即用 `W<pub T>` 对其进行包装，从而实现 TryFrom trait。
 
 好了到这里，我们的项目脚手架也基本完成，我们向其中添加了一些基本的错误定义，工具库，以及预引入功能，可以让你在写从 0 到 1 的项目时，更快地聚焦于项目本身的逻辑，提高效率。如果你觉得有更好的方式方法，欢迎在 [issues 中](https://github.com/suhanyujie/article-transfer-rs/issues)提问题交流 : )。
