@@ -4,7 +4,7 @@ quick-start-rs（quick start a rust project）是用于快速创建一个 rust �
 >* 标题：为自己量身打造一个 Rust 项目模板
 >* 深度参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
 >* 文章来自 [suhanyujie](https://github.com/suhanyujie/quick-start-rs)
->* Tags: Rust, utils, quick start, project template
+>* Tags: Rust, utils, quick start, project template，脚手架
 
 ## 正文
 当你心血来潮，想用 Rust 写一个小工具时，也许你可以直接使用 `cargo new pro1001` 之类的命令进行快速创建，但这样你需要做一些前置准备工作，比如：创建 utils crate、错误处理等等。现在也许你可以有更好的方式 —— quick-start-rs，当然，本文只是抛砖引玉，提供一个思路，你完全可以根据自己的需要定制自己的“quick-start-rs”。此外，本文也是参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0) 撰写的。
@@ -213,10 +213,39 @@ cargo-generate 默认是从 Github 上拉去仓库模板的，因此可以使用
 cargo generate suhanyujie/quick-start-rs
 ```
 
+然后按照命令行的提示，输入新项目名称即可生成：
+
+```
+$  cargo generate suhanyujie/quick-start-rs
+⚠️   Favorite `suhanyujie/quick-start-rs` not found in config, using it as a git repository: https://github.com/suhanyujie/quick-start-rs.git
+🤷   Project Name: demo1
+🔧   Destination: /some/path/xxx/demo1 ...
+🔧   project-name: demo1 ...
+🔧   Generating template ...
+[ 1/15]   Done: .gitignore
+[ 2/15]   Done: Cargo.lock
+[ 3/15]   Done: Cargo.toml
+[ 4/15]   Done: README.md
+[ 7/15]   Done: docs/images
+[ 8/15]   Done: docs
+[ 9/15]   Done: src/errors.rs
+[10/15]   Done: src/main.rs
+[11/15]   Done: src/prelude.rs
+[12/15]   Done: src/utils/dir_entry_from.rs
+[13/15]   Done: src/utils/mod.rs
+[14/15]   Done: src/utils
+[15/15]   Done: src
+🔧   Moving generated files into: `/some/path/xxx/demo1`...
+💡   Initializing a fresh Git repository
+✨   Done! New project created /some/path/xxx/demo1
+```
+
+实际上 cargo generate 很多，更详细的用法和配置可以参考[官方仓库](https://github.com/cargo-generate/cargo-generate)和[文档](https://cargo-generate.github.io/cargo-generate/)。
+
 ## 结语
 好了到这里，我们的项目脚手架的搭建和使用基本完成，我们向其中添加了一些基本的错误定义，工具库，以及预引入功能，可以让你在写从 0 到 1 的项目时，更快地聚焦于项目本身的逻辑，提高效率。如果你觉得有更好的方式方法，欢迎在 [issues 中](https://github.com/suhanyujie/article-transfer-rs/issues)提问题交流 : )。
 
 ## ref
 * 关于基于模板创建新项目可以参考 https://rust-github.github.io/
 * [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
-* https://github.com/cargo-generate/cargo-generate
+* [cargo generate](https://github.com/cargo-generate/cargo-generate) 
