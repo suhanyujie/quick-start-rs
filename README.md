@@ -1,5 +1,5 @@
 # quick-start-rs 
-quick-start-rs（quick start a rust project）是用于快速创建一个 rust 项目的脚手架/模版。
+quick-start-rs（quick start a rust project）是用于快速创建一个 rust 项目的脚手架/模板。
 
 >* 标题：为自己量身打造一个 Rust 项目模板/脚手架
 >* 深度参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
@@ -61,7 +61,7 @@ fn main() {
 此时就能直接在 `./src/utils/mod.rs` 文件中编写工具函数。如果还需细分，可以在 `src/utils` 目录下继续创建文件或目录，用于更详细的模块划分。
 
 ### 错误处理
-用 Rust 编写工具或项目时，错误处理是不可缺少的东西，随着项目的增加，引入其他第三方 crate，或有各种各样的错误类型，为了在你的项目中统一这些错误，我们可以用到 [thiserror](https://crates.io/crates/thiserror)。所以我们可以将其加入的项目模版中：
+用 Rust 编写工具或项目时，错误处理是不可缺少的东西，随着项目的增加，引入其他第三方 crate，或有各种各样的错误类型，为了在你的项目中统一这些错误，我们可以用到 [thiserror](https://crates.io/crates/thiserror)。所以我们可以将其加入的项目模板中：
 
 ```toml
 [dependencies]
@@ -201,7 +201,7 @@ fn get_files_by_dir(dir: String) -> Result<Vec<String>> {
 主要原因是 Rust 中存在一种[“孤儿规则”（orphan rule）](https://doc.rust-lang.org/book/ch19-03-advanced-traits.html?highlight=orphan%20rule#using-the-newtype-pattern-to-implement-external-traits-on-external-types)导致，因为它，我们不能为非本地类型实现非本地的 trait，在这里，DirEntry 是标准库中的类型，TryFrom 也是标准库中的 trait，因此我们需要将 DirEntry 包装成一种新的本地类型 —— 即用 `W<pub T>` 对其进行包装，从而实现 TryFrom trait。
 
 ## cargo generate
-完成以上步骤后，你的项目模板基本成形，此时可以提交到 Github，然后基于这个仓库进行新项目的创建。如果还没有安装，可以使用 `cargo install cargo-generate` 进行安装。
+完成以上步骤后，你的项目模板基本成形，此时可以提交到 Github，然后基于这个仓库进行新项目的创建。基于模板创建新项目还需要一个工具 —— [cargo generate](https://github.com/cargo-generate/cargo-generate)，如果还没有安装，可以使用 `cargo install cargo-generate` 进行安装。
 
 安装完成后，可以使用命令：`cargo generate --git https://github.com/suhanyujie/quick-start-rs.git` 进行拉取。
 
