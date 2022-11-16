@@ -1,7 +1,7 @@
 # quick-start-rs 
 quick-start-rs（quick start a rust project）是用于快速创建一个 rust 项目的脚手架/模版。
 
->* 标题：为自己量身打造一个 Rust 项目模板
+>* 标题：为自己量身打造一个 Rust 项目模板/脚手架
 >* 深度参考 [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
 >* 文章来自 [suhanyujie](https://github.com/suhanyujie/quick-start-rs)
 >* Tags: Rust, utils, quick start, project template，脚手架
@@ -28,10 +28,10 @@ $ cd quit-start-rs
 ```
 
 ### utils crate
-写项目时，经常会用到所谓的 utils 工具包，其中可能会无所不包，如字符串处理、加解密，以及一些 helper 方法，所以在 main.rs 顶部加入 `mod utils`：
+写项目时，经常会用到所谓的 utils 工具包，其中可能会无所不包，如字符串处理、加解密，以及一些 helper 方法。有一个快捷方式，直接在 main.rs 顶部加入 `mod utils`：
 
 ```rust
-mod utils; // new
+mod utils; // <- New
 
 fn main() {
     println!("Hello, world!");
@@ -165,12 +165,10 @@ fn get_files_by_dir(dir: String) -> Result<Vec<String>> {
 }
 ```
 
-我们可以通过上面的 `W<T>(pub T)` 对其进行改进。
-
-
-基于 `fs::read_dir()` 的迭代器，迭代的结果是 `DirEntry`，我们需要将其转换为 `String` 类型，我们可以将 DirEntry 用 W 包装一下，并为 W 类型实现 TryFrom trait:
+基于 `fs::read_dir()` 的迭代器，迭代的结果是 `DirEntry`，我们需要将其转换为 `String` 类型，我们可以将 DirEntry 用 `W<T>(pub T)` 包装一下，并为 W 类型实现 TryFrom trait:
 
 ```rust
+// src/utils/dir_entry_from.rs
 impl TryFrom<W<&DirEntry>> for String {
     type Error = Error;
 
@@ -185,7 +183,7 @@ impl TryFrom<W<&DirEntry>> for String {
 }
 ```
 
-此时，get_files_by_dir 函数的实现就会简单很多：
+此时，`get_files_by_dir` 函数的实现就会简单干净很多：
 
 ```rust
 fn get_files_by_dir(dir: String) -> Result<Vec<String>> {
@@ -213,7 +211,7 @@ cargo-generate 默认是从 Github 上拉去仓库模板的，因此可以使用
 cargo generate suhanyujie/quick-start-rs
 ```
 
-然后按照命令行的提示，输入新项目名称即可生成：
+然后按照命令行的提示，输入新**项目名**称即可生成（例如这里我输入的项目名是 demo1）：
 
 ```
 $  cargo generate suhanyujie/quick-start-rs
@@ -240,12 +238,12 @@ $  cargo generate suhanyujie/quick-start-rs
 ✨   Done! New project created /some/path/xxx/demo1
 ```
 
-实际上 cargo generate 很多，更详细的用法和配置可以参考[官方仓库](https://github.com/cargo-generate/cargo-generate)和[文档](https://cargo-generate.github.io/cargo-generate/)。
+实际上 cargo generate 功能很多，更详细的用法和配置可以参考[官方仓库](https://github.com/cargo-generate/cargo-generate)和[文档](https://cargo-generate.github.io/cargo-generate/)。
 
 ## 结语
 好了到这里，我们的项目脚手架的搭建和使用基本完成，我们向其中添加了一些基本的错误定义，工具库，以及预引入功能，可以让你在写从 0 到 1 的项目时，更快地聚焦于项目本身的逻辑，提高效率。如果你觉得有更好的方式方法，欢迎在 [issues 中](https://github.com/suhanyujie/article-transfer-rs/issues)提问题交流 : )。
 
-## ref
+## 参考
 * 关于基于模板创建新项目可以参考 https://rust-github.github.io/
 * [Rust Code Quick Start](https://www.youtube.com/watch?v=oxx7MmN4Ib0)
 * [cargo generate](https://github.com/cargo-generate/cargo-generate) 
